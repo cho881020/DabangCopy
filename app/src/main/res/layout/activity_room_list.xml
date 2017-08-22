@@ -19,6 +19,7 @@
             android:textSize="18sp"/>
 
         <ImageView
+            android:id="@+id/filterBtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="5dp"

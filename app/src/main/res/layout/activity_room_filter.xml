@@ -21,6 +21,7 @@
             android:textColor="@color/white"/>
 
         <Button
+            android:id="@+id/okBtn"
             android:layout_gravity="right|center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,6 +35,7 @@
         android:orientation="horizontal">
 
         <ToggleButton
+            android:id="@+id/monthPayToggleBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:checked="true"
@@ -42,6 +44,7 @@
             android:layout_weight="1"/>
 
         <ToggleButton
+            android:id="@+id/charterToggleBtn"
             android:textOn="전세 선택"
             android:textOff="전세 안봄"
             android:checked="true"
