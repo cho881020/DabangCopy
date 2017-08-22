@@ -54,7 +54,7 @@ public class GlobalData {
                 37.577521, 127.050658, "6번방에 대한 설명", realtors.get(3)));
         allRooms.add(new Room(7, 300, 80, 1, 33.0, -1, 7,
                 37.574545, 127.047858, "7번방에 대한 설명", realtors.get(1)));
-        allRooms.add(new Room(8, 200, 50, 3, 26.7, 2, 0,
+        allRooms.add(new Room(8, 6500, 0, 3, 26.7, 2, 0,
                 37.570242, 127.058275, "8번방에 대한 설명", realtors.get(0)));
 
 

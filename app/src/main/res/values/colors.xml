@@ -8,4 +8,9 @@
     <color name="black">#000000</color>
     <color name="line_divider">#EFEFEF</color>
 
+    <!--월세를 나타내는 색-->
+    <color name="month_pay_color">#0C58ED</color>
+    <!--전세를 나타내는 색-->
+    <color name="not_month_pay_color">#F68D00</color>
+
 </resources>
