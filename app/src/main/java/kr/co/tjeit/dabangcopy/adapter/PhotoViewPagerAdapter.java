@@ -5,11 +5,13 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.List;
 
 import kr.co.tjeit.dabangcopy.R;
+import kr.co.tjeit.dabangcopy.data.Room;
 
 /**
  * Created by user on 2017-08-22.
@@ -42,7 +44,21 @@ public class PhotoViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View row = inf.inflate(R.layout.photo_item, container, false);
 
-//        실제로 사진을 표시 해야함. TODO
+        String url = mList.get(position);
+
+        ImageView photoImg = (ImageView) row.findViewById(R.id.photoImg);
+
+        // 인터넷 상의 이미지를 폰에서 띄우고 싶을때 -> Glide 라이브러리
+        // 라이브러리 : 도서관
+        // 개발에서의 라이브러리 : 다른 (구글이 아닌) 개인/회사가 만든 프로그램 모듈
+        // 다른 개인/회사 -> Third Party (3rd Party)
+        // 1st (개발사 그 자체. => 구글), 2nd (퍼스트 파티와 직접 연계된 회사),
+        // 3rd -> 아무 관련 없는 회사/개인.
+
+        // 특정 기능을 수행하는 코드 덩어리. => github 에 있는것들을 분석해서 사용.
+
+
+
 
         return row;
     }

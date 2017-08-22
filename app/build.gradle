@@ -19,6 +19,7 @@ android {
     }
 }
 
+// 의존성 : 내 프로젝트가 다른 어떤 프로젝트/라이브러리를 가져다가 쓰는가.
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -26,5 +27,12 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+//    이미지 로더 : Glide를 사용하기 위한 구문.
+
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+    compile 'com.android.support:support-v4:25.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
+
     testCompile 'junit:junit:4.12'
 }
