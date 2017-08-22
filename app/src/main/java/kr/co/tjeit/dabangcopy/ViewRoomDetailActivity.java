@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import kr.co.tjeit.dabangcopy.adapter.PhotoViewPagerAdapter;
 import kr.co.tjeit.dabangcopy.data.Room;
 
 public class ViewRoomDetailActivity extends BaseActivity {
@@ -20,6 +21,8 @@ public class ViewRoomDetailActivity extends BaseActivity {
     private android.widget.TextView costTxt;
 
     Room mRoom = null;
+
+    PhotoViewPagerAdapter mPhotoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class ViewRoomDetailActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+        mPhotoAdapter = new PhotoViewPagerAdapter(mContext, mRoom.getPhotoURLs());
+        photosViewPager.setAdapter(mPhotoAdapter);
 
     }
 
