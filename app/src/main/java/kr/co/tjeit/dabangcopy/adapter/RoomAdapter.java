@@ -138,8 +138,17 @@ public class RoomAdapter extends ArrayAdapter<Room> {
         roomSizeTxt.setText(roomSizeStr);
 
 //        관리비 몇만원
-        String managePayStr = String.format(Locale.KOREA, "관리비 %d만", data.getManagePay());
+        String managePayStr;
+        if (data.getManagePay() == 0) {
+            managePayStr = "관리비 없음";
+        }
+        else {
+            managePayStr = String.format(Locale.KOREA, "관리비 %d만", data.getManagePay());
+        }
+
         managePayTxt.setText(managePayStr);
+
+        descriptionTxt.setText(data.getDescription());
 
 
         return row;

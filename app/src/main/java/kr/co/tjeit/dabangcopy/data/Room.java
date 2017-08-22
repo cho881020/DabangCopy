@@ -1,6 +1,7 @@
 package kr.co.tjeit.dabangcopy.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,10 @@ public class Room implements Serializable {
 
     private Realtor manager; // 이 방을 관리하고 있는 공인중개사
     private List<User> likeUser; // 이방을 찜한 사람의 목록
+
+//    사진 주소 목록
+    private List<String> photoURLs = new ArrayList<>();
+
 
     public Room() {
     }
@@ -139,5 +144,13 @@ public class Room implements Serializable {
 
     public void setLikeUser(List<User> likeUser) {
         this.likeUser = likeUser;
+    }
+
+    public List<String> getPhotoURLs() {
+        return photoURLs;
+    }
+
+    public void setPhotoURLs(List<String> photoURLs) {
+        this.photoURLs = photoURLs;
     }
 }

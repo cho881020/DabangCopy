@@ -42,6 +42,12 @@ public class GlobalData {
 
         allRooms.add(new Room(1, 500, 45, 1, 36.3, -1, 0,
                 37.540784, 126.994198, "1번방에 대한 설명", realtors.get(0)));
+
+        allRooms.get(0).getPhotoURLs().add("https://d1774jszgerdmk.cloudfront.net/1024/9e89a378-ab08-4ae8-ac56-4097132e6231");
+        allRooms.get(0).getPhotoURLs().add("https://d1774jszgerdmk.cloudfront.net/1024/194ea6c4-583f-4e6e-a78d-6084a3ed2ca0");
+        allRooms.get(0).getPhotoURLs().add("https://d1774jszgerdmk.cloudfront.net/1024/424f83db-9cac-4d1b-819f-5bf555a2eaa5");
+        allRooms.get(0).getPhotoURLs().add("https://d1774jszgerdmk.cloudfront.net/1024/77065296-0eac-4080-afda-fe725f8e6bf9");
+
         allRooms.add(new Room(2, 1000, 35, 1, 26.3, 0, 5,
                 37.573646, 126.929949, "2번방에 대한 설명", realtors.get(3)));
         allRooms.add(new Room(3, 1500, 15, 2, 60.6, 1, 10,
