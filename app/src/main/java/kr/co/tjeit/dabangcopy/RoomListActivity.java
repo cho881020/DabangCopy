@@ -115,6 +115,8 @@ public class RoomListActivity extends BaseActivity {
                 }
             }
 
+//            ㅁ어라ㅣㅁㅇ너
+
 
 //            상황이 맞다면 실제로 추가하는 부분.
             if (isPayOk) {
