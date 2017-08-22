@@ -19,6 +19,7 @@ android {
     }
 }
 
+// 패키지 매니저. 빌드 관리 툴 (Gradle)
 // 의존성 : 내 프로젝트가 다른 어떤 프로젝트/라이브러리를 가져다가 쓰는가.
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import kr.co.tjeit.dabangcopy.R;
@@ -57,7 +59,9 @@ public class PhotoViewPagerAdapter extends PagerAdapter {
 
         // 특정 기능을 수행하는 코드 덩어리. => github 에 있는것들을 분석해서 사용.
 
+        Glide.with(mContext).load(url).into(photoImg);
 
+        container.addView(row);
 
 
         return row;
