@@ -1,15 +1,24 @@
 package kr.co.tjeit.dabangcopy;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Locale;
 
 import kr.co.tjeit.dabangcopy.adapter.PhotoViewPagerAdapter;
 import kr.co.tjeit.dabangcopy.data.Room;
 
-public class ViewRoomDetailActivity extends BaseActivity {
+public class ViewRoomDetailActivity extends BaseActivity implements OnMapReadyCallback {
 
     private android.support.v4.view.ViewPager photosViewPager;
     private android.widget.TextView monthOrNotTxt;
@@ -46,6 +55,13 @@ public class ViewRoomDetailActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
+//        지도 프래그먼트를 불러오는 부분.
+        FragmentManager fragmentManager = getFragmentManager();
+        MapFragment mapFragment = (MapFragment)fragmentManager
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
         mPhotoAdapter = new PhotoViewPagerAdapter(mContext, mRoom.getPhotoURLs());
         photosViewPager.setAdapter(mPhotoAdapter);
 
@@ -172,4 +188,24 @@ public class ViewRoomDetailActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        LatLng roomPoint = new LatLng(mRoom.getLatitude(), mRoom.getLongitude());
+
+        MarkerOptions roomMarker = new MarkerOptions();
+        roomMarker.position(roomPoint);
+        roomMarker.title("방의 위치");
+        roomMarker.snippet("좋은 방입니다.");
+
+//        만들어낸 마커를 실제로 달아줌
+        googleMap.addMarker(roomMarker);
+
+//        지도 좌표를 옮기는 작업
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(roomPoint));
+
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+
+    }
 }
