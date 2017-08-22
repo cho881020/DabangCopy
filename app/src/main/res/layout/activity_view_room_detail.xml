@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <FrameLayout
-                tools:visibility="visible"
+                tools:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="300dp">
 
@@ -52,6 +52,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/pageIndicatorTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1/17"
@@ -120,6 +121,7 @@
                             android:src="@mipmap/ic_launcher_round"/>
 
                         <TextView
+                            android:id="@+id/roomTypeTxt"
                             android:layout_marginTop="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -140,6 +142,7 @@
                             android:src="@mipmap/ic_launcher_round"/>
 
                         <TextView
+                            android:id="@+id/roomSizeTxt"
                             android:layout_marginTop="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -160,6 +163,7 @@
                             android:src="@mipmap/ic_launcher_round"/>
 
                         <TextView
+                            android:id="@+id/stairCountTxt"
                             android:layout_marginTop="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -180,6 +184,7 @@
                             android:src="@mipmap/ic_launcher_round"/>
 
                         <TextView
+                            android:id="@+id/managePayTxt"
                             android:layout_marginTop="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -196,6 +201,7 @@
                     android:background="@color/line_divider"/>
 
                 <TextView
+                    android:id="@+id/descriptionTxt"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:gravity="center"
@@ -217,12 +223,14 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/monthOrNotTxt2"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="월세"
                         android:textSize="16sp"/>
 
                     <TextView
+                        android:id="@+id/costTxt2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
@@ -243,6 +251,7 @@
                         android:textSize="16sp"/>
 
                     <TextView
+                        android:id="@+id/managePayTxt2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
@@ -331,6 +340,7 @@
                     android:textColor="@color/black"/>
 
                 <TextView
+                    tools:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:gravity="center"
@@ -354,6 +364,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/descriptionTxt2"
                     android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
