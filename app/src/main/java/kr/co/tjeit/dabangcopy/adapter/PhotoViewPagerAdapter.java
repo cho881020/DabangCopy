@@ -46,7 +46,7 @@ public class PhotoViewPagerAdapter extends PagerAdapter {
 
     // ListView할때 쓰는 Adapter의 getView랑 동일한 역할.
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         View row = inf.inflate(R.layout.photo_item, container, false);
 
         final String url = mList.get(position);
@@ -74,6 +74,7 @@ public class PhotoViewPagerAdapter extends PagerAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PhotoViewPagerActivity.class);
                 intent.putExtra("URLs", (ArrayList<String>) mList);
+                intent.putExtra("startPage", position);
                 mContext.startActivity(intent);
             }
         });
