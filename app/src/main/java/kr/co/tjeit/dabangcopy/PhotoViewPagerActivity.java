@@ -1,20 +1,25 @@
 package kr.co.tjeit.dabangcopy;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 
-import com.bumptech.glide.Glide;
-import com.github.chrisbanes.photoview.PhotoView;
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.co.tjeit.dabangcopy.adapter.LargePhotoViewPagerAdapter;
 
 public class PhotoViewPagerActivity extends BaseActivity {
 
-    String mURL = "";
-    private com.github.chrisbanes.photoview.PhotoView photoImg;
+
+    private android.support.v4.view.ViewPager photosViewPager;
+    LargePhotoViewPagerAdapter mAdapter;
+    List<String> urls = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_view_pager);
-        mURL = getIntent().getStringExtra("url");
+        urls = getIntent().getStringArrayListExtra("URLs");
         bindViews();
         setupEvents();
         setValues();
@@ -27,16 +32,15 @@ public class PhotoViewPagerActivity extends BaseActivity {
 
     @Override
     public void setValues() {
-//        받아온 주소를 기반으로, 이미지 뷰에 이미지를 집어넣자.
-//        Glide를 이용하면 편하다.
+//
 
-        Glide.with(mContext).load(mURL).into(photoImg);
+        mAdapter = new LargePhotoViewPagerAdapter(mContext, urls);
+        photosViewPager.setAdapter(mAdapter);
 
     }
 
     @Override
     public void bindViews() {
-        this.photoImg = (PhotoView) findViewById(R.id.photoImg);
-
+        this.photosViewPager = (ViewPager) findViewById(R.id.photosViewPager);
     }
 }

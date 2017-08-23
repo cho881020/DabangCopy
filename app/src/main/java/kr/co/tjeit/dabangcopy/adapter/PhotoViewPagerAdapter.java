@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.tjeit.dabangcopy.PhotoViewPagerActivity;
@@ -72,7 +73,7 @@ public class PhotoViewPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PhotoViewPagerActivity.class);
-                intent.putExtra("url", url);
+                intent.putExtra("URLs", (ArrayList<String>) mList);
                 mContext.startActivity(intent);
             }
         });
