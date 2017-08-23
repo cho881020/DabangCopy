@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import java.util.Locale;
 
 import io.apptik.widget.MultiSlider;
 
@@ -18,6 +21,7 @@ public class RoomFilterActivity extends BaseActivity {
     private ToggleButton twoRoomToggleBtn;
     private ToggleButton threeRoomToggleBtn;
     private io.apptik.widget.MultiSlider depositSlide;
+    private android.widget.TextView currentDepositTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,50 @@ public class RoomFilterActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        depositSlide.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
+            @Override
+            public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
+//                Log.d("현재 값", depositSlide.getThumb(0).getValue() + " - " + depositSlide.getThumb(1).getValue());
+
+                int minUk = depositSlide.getThumb(0).getValue() * 500 / 10000;
+                int minThousands = depositSlide.getThumb(0).getValue() * 500 % 10000;
+
+                String minValueStr;
+                if (minUk == 0) {
+                    minValueStr = String.format(Locale.KOREA, "%d", minThousands);
+                }
+                else {
+                    if (minThousands == 0) {
+                        minValueStr = String.format(Locale.KOREA, "%d억", minUk);
+                    }
+                    else {
+                        minValueStr = String.format(Locale.KOREA, "%d억%d", minUk, minThousands);
+                    }
+
+                }
+
+                int maxUk = depositSlide.getThumb(1).getValue() * 500 / 10000;
+                int maxThousands = depositSlide.getThumb(1).getValue() * 500 % 10000;
+
+                String maxValueStr;
+                if (maxUk == 0) {
+                    maxValueStr = String.format(Locale.KOREA, "%d", maxThousands);
+                }
+                else {
+                    if (maxThousands == 0) {
+                        maxValueStr = String.format(Locale.KOREA, "%d억", maxUk);
+                    }
+                    else {
+                        maxValueStr = String.format(Locale.KOREA, "%d억%d", maxUk, maxThousands);
+                    }
+
+                }
+
+                currentDepositTxt.setText(minValueStr + " ~ " + maxValueStr);
+
+            }
+        });
 
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +116,11 @@ public class RoomFilterActivity extends BaseActivity {
 
     @Override
     public void bindViews() {
-
         this.threeRoomToggleBtn = (ToggleButton) findViewById(R.id.threeRoomToggleBtn);
         this.twoRoomToggleBtn = (ToggleButton) findViewById(R.id.twoRoomToggleBtn);
         this.oneRoomToggleBtn = (ToggleButton) findViewById(R.id.oneRoomToggleBtn);
         this.depositSlide = (MultiSlider) findViewById(R.id.depositSlide);
+        this.currentDepositTxt = (TextView) findViewById(R.id.currentDepositTxt);
         this.charterToggleBtn = (ToggleButton) findViewById(R.id.charterToggleBtn);
         this.monthPayToggleBtn = (ToggleButton) findViewById(R.id.monthPayToggleBtn);
         this.okBtn = (Button) findViewById(R.id.okBtn);
