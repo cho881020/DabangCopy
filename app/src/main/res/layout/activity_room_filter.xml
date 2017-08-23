@@ -60,6 +60,18 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="보증금 선택"/>
+
+    <SeekBar
+        android:padding="10dp"
+        android:progress="60"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,6 +85,7 @@
         android:orientation="horizontal">
 
         <ToggleButton
+            android:id="@+id/oneRoomToggleBtn"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -81,6 +94,7 @@
             android:textOff="원룸 X"/>
 
         <ToggleButton
+            android:id="@+id/twoRoomToggleBtn"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:checked="true"
@@ -89,6 +103,7 @@
             android:textOff="투룸 X"/>
 
         <ToggleButton
+            android:id="@+id/threeRoomToggleBtn"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:checked="true"
