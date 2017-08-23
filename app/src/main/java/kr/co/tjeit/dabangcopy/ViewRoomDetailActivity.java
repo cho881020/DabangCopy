@@ -51,6 +51,8 @@ public class ViewRoomDetailActivity extends BaseActivity implements OnMapReadyCa
     @Override
     public void setupEvents() {
 
+
+
     }
 
     @Override

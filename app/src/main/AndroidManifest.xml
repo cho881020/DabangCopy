@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewRoomDetailActivity" />
-        <activity android:name=".RoomFilterActivity"></activity>
+        <activity android:name=".RoomFilterActivity" />
+        <activity android:name=".PhotoViewPagerActivity"></activity>
     </application>
 
 </manifest>

@@ -92,6 +92,9 @@ public class RoomFilterActivity extends BaseActivity {
                 finishIntent.putExtra("원룸선택여부", oneRoomToggleBtn.isChecked());
                 finishIntent.putExtra("투룸선택여부", twoRoomToggleBtn.isChecked());
                 finishIntent.putExtra("쓰리룸선택여부", threeRoomToggleBtn.isChecked());
+//                보증금 첨부. 최소 보증금 / 최대 보증금
+                finishIntent.putExtra("최소보증금", depositSlide.getThumb(0).getValue() * 500);
+                finishIntent.putExtra("최대보증금", depositSlide.getThumb(1).getValue() * 500);
 
 //                멀티 슬라이더의 최소/최대
 
@@ -102,7 +105,7 @@ public class RoomFilterActivity extends BaseActivity {
 //                setResult : 확인 표시, 어떤 데이터를 첨부하는지 전달
                 setResult(RESULT_OK, finishIntent);
 //                화면을 종료
-//                finish();
+                finish();
 
             }
         });

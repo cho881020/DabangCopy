@@ -26,6 +26,9 @@ public class RoomListActivity extends BaseActivity {
     boolean isOneRoomeSelected = true;
     boolean isTwoRoomeSelected = true;
     boolean isThreeRoomeSelected = true;
+//    최소 보증금, 최대 보증금을 저장할 변수.
+    int minDeposit = 0;
+    int maxDeposit = 50000;
 
     private android.widget.ListView roomListView;
 //    필터되서 출력될 수 있도록 지원해주는 출력용 리스트
@@ -88,6 +91,10 @@ public class RoomListActivity extends BaseActivity {
                 isTwoRoomeSelected = data.getBooleanExtra("투룸선택여부", true);
                 isThreeRoomeSelected = data.getBooleanExtra("쓰리룸선택여부", true);
 
+//                최소 보증금 / 최대 보증금 데이터 받아오기.
+                minDeposit = data.getIntExtra("최소보증금", 0);
+                maxDeposit = data.getIntExtra("최대보증금", 50000);
+
 //                실제로 출력용 리스트에 데이터를 필터하는 메쏘드
                 filterRoomList();
 
@@ -107,6 +114,8 @@ public class RoomListActivity extends BaseActivity {
         boolean isPayOk = false;
 //        방의 갯수가 조건에 맞는지를 저장하는 변수.
         boolean isRoomCountOk = false;
+//        보증금이 적절한지를 저장하는 변수
+        boolean isDepositOk = false;
 
 //        전체 데이터를 하나하나 검사.
         for (Room room : GlobalData.allRooms) {
@@ -129,6 +138,8 @@ public class RoomListActivity extends BaseActivity {
                 }
             }
 
+//            방갯수에 대한 검사
+
             if (isOneRoomeSelected) {
                 if (room.getRoomCount() == 1) {
                     isRoomCountOk = true;
@@ -148,9 +159,13 @@ public class RoomListActivity extends BaseActivity {
             }
 
 
+//            보증금 검사
+            if (minDeposit <= room.getDeposit() && room.getDeposit() <= maxDeposit) {
+                isDepositOk = true;
+            }
 
 //            마지막 질문. 모든 조건을 만족시키는 방인지?
-            if (isPayOk && isRoomCountOk) {
+            if (isPayOk && isRoomCountOk && isDepositOk) {
 //                모든 조건이 다 맞는 방이다.
 //                실제로 출력해주자. -> 출력용 리스트에 집어넣자.
 
@@ -162,6 +177,7 @@ public class RoomListActivity extends BaseActivity {
 //            계약방식도, 방 갯수도 일단 안맞는다라고 전제.
             isPayOk = false;
             isRoomCountOk = false;
+            isDepositOk = false;
 
 
         }
