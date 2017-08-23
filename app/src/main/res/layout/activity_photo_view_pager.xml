@@ -9,10 +9,10 @@
     tools:context="kr.co.tjeit.dabangcopy.PhotoViewPagerActivity">
 
 
-    <ImageView
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/photoImg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>

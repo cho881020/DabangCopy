@@ -1,14 +1,14 @@
 package kr.co.tjeit.dabangcopy;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 
 public class PhotoViewPagerActivity extends BaseActivity {
 
     String mURL = "";
-    private android.widget.ImageView photoImg;
+    private com.github.chrisbanes.photoview.PhotoView photoImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class PhotoViewPagerActivity extends BaseActivity {
 
     @Override
     public void bindViews() {
+        this.photoImg = (PhotoView) findViewById(R.id.photoImg);
 
-        this.photoImg = (ImageView) findViewById(R.id.photoImg);
     }
 }
