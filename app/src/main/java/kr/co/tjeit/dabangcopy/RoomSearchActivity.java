@@ -16,10 +16,13 @@ public class RoomSearchActivity extends BaseActivity {
     private android.widget.FrameLayout tabcontent;
     private android.widget.TabHost searchTabHost;
 
+    int selectedTab = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_search);
+        selectedTab = getIntent().getIntExtra("선택할탭", 0);
         bindViews();
         setupEvents();
         setValues();
@@ -33,6 +36,9 @@ public class RoomSearchActivity extends BaseActivity {
     @Override
     public void setValues() {
         makeTabHost();
+
+//        탭 호스트에 선택값 주기
+        searchTabHost.setCurrentTab(selectedTab);
 
     }
 
