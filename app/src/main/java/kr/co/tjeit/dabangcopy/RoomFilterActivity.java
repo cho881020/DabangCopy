@@ -2,9 +2,12 @@ package kr.co.tjeit.dabangcopy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
+
+import io.apptik.widget.MultiSlider;
 
 public class RoomFilterActivity extends BaseActivity {
 
@@ -14,6 +17,7 @@ public class RoomFilterActivity extends BaseActivity {
     private ToggleButton oneRoomToggleBtn;
     private ToggleButton twoRoomToggleBtn;
     private ToggleButton threeRoomToggleBtn;
+    private io.apptik.widget.MultiSlider depositSlide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +45,16 @@ public class RoomFilterActivity extends BaseActivity {
                 finishIntent.putExtra("투룸선택여부", twoRoomToggleBtn.isChecked());
                 finishIntent.putExtra("쓰리룸선택여부", threeRoomToggleBtn.isChecked());
 
+//                멀티 슬라이더의 최소/최대
+
+                Log.d("슬라이더값", depositSlide.getThumb(0).getValue()
+                        + " - " + depositSlide.getThumb(1).getValue());
+
 //                실제로 돌려보내는 작업 -> setResult, finish
 //                setResult : 확인 표시, 어떤 데이터를 첨부하는지 전달
                 setResult(RESULT_OK, finishIntent);
 //                화면을 종료
-                finish();
+//                finish();
 
             }
         });
@@ -63,6 +72,7 @@ public class RoomFilterActivity extends BaseActivity {
         this.threeRoomToggleBtn = (ToggleButton) findViewById(R.id.threeRoomToggleBtn);
         this.twoRoomToggleBtn = (ToggleButton) findViewById(R.id.twoRoomToggleBtn);
         this.oneRoomToggleBtn = (ToggleButton) findViewById(R.id.oneRoomToggleBtn);
+        this.depositSlide = (MultiSlider) findViewById(R.id.depositSlide);
         this.charterToggleBtn = (ToggleButton) findViewById(R.id.charterToggleBtn);
         this.monthPayToggleBtn = (ToggleButton) findViewById(R.id.monthPayToggleBtn);
         this.okBtn = (Button) findViewById(R.id.okBtn);
