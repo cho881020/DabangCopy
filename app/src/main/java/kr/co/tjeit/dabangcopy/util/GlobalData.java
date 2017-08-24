@@ -74,6 +74,7 @@ public class GlobalData {
 
 //        4. 지하철 역 목록
 //        지하철 역 자체를 추가
+        stations.clear();
         stations.add(new Subway("종로3가"));
 //        추가된 지하철 역의 호선수 추가
         stations.get(0).getLines().add("1호선");
@@ -115,6 +116,7 @@ public class GlobalData {
         stations.get(8).getLines().add("2호선");
 
 //        5. 대학교 목록 추가
+        universities.clear();
         universities.add(new University("서울대학교"));
         universities.add(new University("연세대학교"));
         universities.add(new University("고려대학교"));

@@ -183,12 +183,12 @@ public class RoomSearchActivity extends BaseActivity {
         searchTabHost.setCurrentTab(selectedTab);
 
 //        모든 지하철 역을 출력용 목록에 집어넣음
-        mDisplaySubwayList.addAll(GlobalData.stations);
+//        mDisplaySubwayList.addAll(GlobalData.stations);
 
         mSubwayAdapter = new SubwayAdapter(mContext, mDisplaySubwayList);
         subwayListView.setAdapter(mSubwayAdapter);
 
-        mDisplayUniversityList.addAll(GlobalData.universities);
+//        mDisplayUniversityList.addAll(GlobalData.universities);
         mUniversityAdapter = new UniversityAdapter(mContext, mDisplayUniversityList);
         universityListView.setAdapter(mUniversityAdapter);
 
