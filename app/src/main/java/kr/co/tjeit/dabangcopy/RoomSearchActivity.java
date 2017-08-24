@@ -1,6 +1,8 @@
 package kr.co.tjeit.dabangcopy;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
@@ -17,6 +19,7 @@ public class RoomSearchActivity extends BaseActivity {
     private android.widget.TabHost searchTabHost;
 
     int selectedTab = 0;
+    private android.widget.EditText searchEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,25 @@ public class RoomSearchActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+        searchTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                Log.d("터치된탭", tabId);
+                if (tabId.equals("tab1")) {
+                    searchEdt.setHint("동, 면, 읍 명을 검색하세요.");
+                }
+                else if (tabId.equals("tab2")) {
+                    searchEdt.setHint("지하철 명을 검색하세요.");
+                }
+                else if (tabId.equals("tab3")) {
+                    searchEdt.setHint("대학교 명을 검색하세요.");
+                }
+                else if (tabId.equals("tab4")) {
+                    searchEdt.setHint("단지 명을 검색하세요.");
+                }
 
+            }
+        });
     }
 
     @Override
@@ -74,7 +95,6 @@ public class RoomSearchActivity extends BaseActivity {
 
     @Override
     public void bindViews() {
-
         this.searchTabHost = (TabHost) findViewById(R.id.searchTabHost);
         this.tabcontent = (FrameLayout) findViewById(android.R.id.tabcontent);
         this.tab4 = (LinearLayout) findViewById(R.id.tab4);
@@ -82,5 +102,6 @@ public class RoomSearchActivity extends BaseActivity {
         this.tab2 = (LinearLayout) findViewById(R.id.tab2);
         this.tab1 = (LinearLayout) findViewById(R.id.tab1);
         this.tabs = (TabWidget) findViewById(android.R.id.tabs);
+        this.searchEdt = (EditText) findViewById(R.id.searchEdt);
     }
 }
