@@ -12,6 +12,7 @@ import java.util.List;
 
 import kr.co.tjeit.dabangcopy.adapter.RoomAdapter;
 import kr.co.tjeit.dabangcopy.data.Room;
+import kr.co.tjeit.dabangcopy.data.Subway;
 import kr.co.tjeit.dabangcopy.util.GlobalData;
 
 public class RoomListActivity extends BaseActivity {
@@ -36,19 +37,26 @@ public class RoomListActivity extends BaseActivity {
     RoomAdapter mAdapter;
     private android.widget.ImageView filterBtn;
 
+    Subway mSubway = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
+//        지하철역을 전달 받음.
+        mSubway = (Subway) getIntent().getSerializableExtra("지하철역");
 //        원하는리스트.addAll(원본리스트)?
 //        원본 리스트에 있는 모든 내용물을 복사해서 원하는 리스트에 추가해주는 메쏘드
 //        차후에 필터를 동작시키기 위해 mDisplayRoomArray를 활용하는 방안으로 코딩.
-        mDisplayRoomArray.addAll(GlobalData.allRooms);
+//        mDisplayRoomArray.addAll(GlobalData.allRooms);
+
 
         bindViews();
         setupEvents();
         setValues();
+
+//        지하철목록과, 기타 기준을 기반으로 방을 필터.
+        filterRoomList();
     }
 
     @Override
@@ -114,6 +122,8 @@ public class RoomListActivity extends BaseActivity {
         boolean isRoomCountOk = false;
 //        보증금이 적절한지를 저장하는 변수
         boolean isDepositOk = false;
+//        지하철역에 방이 가까운지 저장하는 변수
+        boolean isSubwayOk = false;
 
 //        전체 데이터를 하나하나 검사.
         for (Room room : GlobalData.allRooms) {
@@ -162,8 +172,30 @@ public class RoomListActivity extends BaseActivity {
                 isDepositOk = true;
             }
 
+//            지하철역 확인.
+//            이 방의 가까운 지하철역 목록 중에, 지금 보여주려는 지하철역이 들어있는지?
+
+//            contains를 그냥 바로 쓰게되면 제대로 동작하지 않는다.
+//            왜? contains : 내부에서 입력되는 객체와 같은게 있는지 검사.
+//            equals 메쏘드를 활용. -> 제대로 동작하지 않아서.
+//            ※ Subway 클래스의 equals 메쏘드를 오버라이딩.
+            if (room.getNearStations().contains(mSubway)) {
+                isSubwayOk = true;
+            }
+
+////            이 방에 가까운 지하철역 목록을 뽑아본다.
+//            for (Subway sw : room.getNearStations()) {
+////                검사하는 방이 가진 가까운 지하철 역의 이름과
+////                검색화면에서 넘겨준 지하철역의 이름이 같으면
+////                목록에 추가해준다. (isSubwayOk = true)
+//                if (sw.getStationName().equals(mSubway.getStationName())) {
+//                    isSubwayOk = true;
+//                }
+//            }
+
+
 //            마지막 질문. 모든 조건을 만족시키는 방인지?
-            if (isPayOk && isRoomCountOk && isDepositOk) {
+            if (isPayOk && isRoomCountOk && isDepositOk && isSubwayOk) {
 //                모든 조건이 다 맞는 방이다.
 //                실제로 출력해주자. -> 출력용 리스트에 집어넣자.
 
@@ -176,6 +208,7 @@ public class RoomListActivity extends BaseActivity {
             isPayOk = false;
             isRoomCountOk = false;
             isDepositOk = false;
+            isSubwayOk = false;
 
 
         }

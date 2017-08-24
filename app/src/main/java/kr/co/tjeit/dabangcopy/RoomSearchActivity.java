@@ -1,9 +1,12 @@
 package kr.co.tjeit.dabangcopy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -48,6 +51,23 @@ public class RoomSearchActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+//        지하철 역 선택 이벤트 감지
+        subwayListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent myIntent = new Intent(mContext, RoomListActivity.class);
+
+                myIntent.putExtra("지하철역", mDisplaySubwayList.get(position));
+
+//                startActvitiy Vs. startActivityForResult
+//                일단 둘다, 다른 화면을 넘어간다는건 동일.
+//                넘어간 화면에서 "확인" 눌러서 돌아오는가?
+//                맞으면 ForResult, 아니면 그냥 startActivity
+                startActivity(myIntent);
+            }
+        });
+
 
 //        키보드 타이핑 이벤트 감지
 

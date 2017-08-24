@@ -37,6 +37,12 @@ public class Subway implements Serializable {
     public void setLines(List<String> lines) {
         this.lines = lines;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+//        역이름이 다른지하철의 역 이름과 같다면 true
+        return getStationName().equals(((Subway)obj).getStationName());
+    }
 }
 
 
