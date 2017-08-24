@@ -24,6 +24,8 @@ public class Room implements Serializable {
     // 지도 라이브러리 끼워넣기를 해보게된다.
     private String description; // 상세 설명
 
+    private String address; // 주소.
+
 //    관계
 
     private Realtor manager; // 이 방을 관리하고 있는 공인중개사
@@ -41,7 +43,7 @@ public class Room implements Serializable {
     public Room() {
     }
 
-    public Room(int roomId, int deposit, int rentPay, int roomCount, double roomSize, int stairCount, int managePay, double latitude, double longitude, String description, Realtor manager) {
+    public Room(int roomId, int deposit, int rentPay, int roomCount, double roomSize, int stairCount, int managePay, double latitude, double longitude, String description, String address, Realtor manager) {
         this.roomId = roomId;
         this.deposit = deposit;
         this.rentPay = rentPay;
@@ -52,6 +54,7 @@ public class Room implements Serializable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.description = description;
+        this.address = address;
         this.manager = manager;
     }
 
@@ -173,5 +176,13 @@ public class Room implements Serializable {
 
     public void setNearUniversities(List<University> nearUniversities) {
         this.nearUniversities = nearUniversities;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

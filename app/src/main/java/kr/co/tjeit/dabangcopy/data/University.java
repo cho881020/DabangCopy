@@ -23,4 +23,9 @@ public class University implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return getName().equals(((University)obj).getName());
+    }
 }

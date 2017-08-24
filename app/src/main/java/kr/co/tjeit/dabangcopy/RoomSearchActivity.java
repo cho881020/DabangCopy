@@ -57,6 +57,15 @@ public class RoomSearchActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
+        universityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(mContext, RoomListActivity.class);
+                intent.putExtra("대학교", mDisplayUniversityList.get(position));
+                startActivity(intent);
+            }
+        });
+
 //        지하철 역 선택 이벤트 감지
         subwayListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

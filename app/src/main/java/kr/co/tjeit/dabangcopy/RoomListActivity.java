@@ -13,6 +13,7 @@ import java.util.List;
 import kr.co.tjeit.dabangcopy.adapter.RoomAdapter;
 import kr.co.tjeit.dabangcopy.data.Room;
 import kr.co.tjeit.dabangcopy.data.Subway;
+import kr.co.tjeit.dabangcopy.data.University;
 import kr.co.tjeit.dabangcopy.util.GlobalData;
 
 public class RoomListActivity extends BaseActivity {
@@ -38,6 +39,7 @@ public class RoomListActivity extends BaseActivity {
     private android.widget.ImageView filterBtn;
 
     Subway mSubway = null;
+    University mUniversity = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class RoomListActivity extends BaseActivity {
         setContentView(R.layout.activity_room_list);
 //        지하철역을 전달 받음.
         mSubway = (Subway) getIntent().getSerializableExtra("지하철역");
+        mUniversity = (University) getIntent().getSerializableExtra("대학교");
 //        원하는리스트.addAll(원본리스트)?
 //        원본 리스트에 있는 모든 내용물을 복사해서 원하는 리스트에 추가해주는 메쏘드
 //        차후에 필터를 동작시키기 위해 mDisplayRoomArray를 활용하는 방안으로 코딩.
@@ -124,6 +127,8 @@ public class RoomListActivity extends BaseActivity {
         boolean isDepositOk = false;
 //        지하철역에 방이 가까운지 저장하는 변수
         boolean isSubwayOk = false;
+//        대학교와 방이 가까운지 저장하는 변수
+        boolean isUnivOk = false;
 
 //        전체 데이터를 하나하나 검사.
         for (Room room : GlobalData.allRooms) {
@@ -179,7 +184,13 @@ public class RoomListActivity extends BaseActivity {
 //            왜? contains : 내부에서 입력되는 객체와 같은게 있는지 검사.
 //            equals 메쏘드를 활용. -> 제대로 동작하지 않아서.
 //            ※ Subway 클래스의 equals 메쏘드를 오버라이딩.
-            if (room.getNearStations().contains(mSubway)) {
+            if (mSubway != null) {
+
+                if (room.getNearStations().contains(mSubway)) {
+                    isSubwayOk = true;
+                }
+            }
+            else  {
                 isSubwayOk = true;
             }
 
@@ -193,9 +204,20 @@ public class RoomListActivity extends BaseActivity {
 //                }
 //            }
 
+            if (mUniversity != null) {
+                if (room.getNearUniversities().contains(mUniversity)) {
+                    isUnivOk = true;
+                }
+            }
+            else {
+//                mUniversity가 null이라는건, 대학교는 검사 조건에 사용되지 않는다.
+//                전달받은 대학교가 없으면 대학조건은 무조건 OK.
+                isUnivOk = true;
+            }
+
 
 //            마지막 질문. 모든 조건을 만족시키는 방인지?
-            if (isPayOk && isRoomCountOk && isDepositOk && isSubwayOk) {
+            if (isPayOk && isRoomCountOk && isDepositOk && isSubwayOk && isUnivOk) {
 //                모든 조건이 다 맞는 방이다.
 //                실제로 출력해주자. -> 출력용 리스트에 집어넣자.
 
@@ -209,6 +231,7 @@ public class RoomListActivity extends BaseActivity {
             isRoomCountOk = false;
             isDepositOk = false;
             isSubwayOk = false;
+            isUnivOk = false;
 
 
         }
