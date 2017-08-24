@@ -6,6 +6,7 @@ import java.util.List;
 import kr.co.tjeit.dabangcopy.data.Realtor;
 import kr.co.tjeit.dabangcopy.data.Room;
 import kr.co.tjeit.dabangcopy.data.Subway;
+import kr.co.tjeit.dabangcopy.data.University;
 import kr.co.tjeit.dabangcopy.data.User;
 
 /**
@@ -20,6 +21,9 @@ public class GlobalData {
 
 //    지하철 역 목록
     public static List<Subway> stations = new ArrayList<>();
+
+//    대학교 목록
+    public static List<University> universities = new ArrayList<>();
 
     // 더미데이터 쌓기.
     public static void initGlobalData() {
@@ -110,6 +114,14 @@ public class GlobalData {
         stations.add(new Subway("서초"));
         stations.get(8).getLines().add("2호선");
 
+//        5. 대학교 목록 추가
+        universities.add(new University("서울대학교"));
+        universities.add(new University("연세대학교"));
+        universities.add(new University("고려대학교"));
+        universities.add(new University("서강대학교"));
+        universities.add(new University("한양대학교"));
+        universities.add(new University("성균관대학교"));
+
 
 //        ※ 관계들을 설정
 
@@ -126,6 +138,19 @@ public class GlobalData {
 
 //        4번방 : 교대
         allRooms.get(5).getNearStations().add(stations.get(3));
+
+
+//        0번방 : 서울대
+        allRooms.get(0).getNearUniversities().add(universities.get(0));
+//        1번방 : 연세, 고려
+        allRooms.get(1).getNearUniversities().add(universities.get(1));
+        allRooms.get(1).getNearUniversities().add(universities.get(2));
+//        2번방 : 서강, 한양, 성균관, 서울
+        allRooms.get(2).getNearUniversities().add(universities.get(3));
+        allRooms.get(2).getNearUniversities().add(universities.get(4));
+        allRooms.get(2).getNearUniversities().add(universities.get(5));
+        allRooms.get(2).getNearUniversities().add(universities.get(0));
+
     }
 
 }

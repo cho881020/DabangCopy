@@ -35,6 +35,9 @@ public class Room implements Serializable {
 //    가까운 지하철역 목록
     private List<Subway> nearStations = new ArrayList<>();
 
+//    가까운 대학교 목록
+    private List<University> nearUniversities = new ArrayList<>();
+
     public Room() {
     }
 
@@ -162,5 +165,13 @@ public class Room implements Serializable {
 
     public void setNearStations(List<Subway> nearStations) {
         this.nearStations = nearStations;
+    }
+
+    public List<University> getNearUniversities() {
+        return nearUniversities;
+    }
+
+    public void setNearUniversities(List<University> nearUniversities) {
+        this.nearUniversities = nearUniversities;
     }
 }

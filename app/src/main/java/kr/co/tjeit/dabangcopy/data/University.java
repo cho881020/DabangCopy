@@ -7,4 +7,20 @@ import java.io.Serializable;
  */
 
 public class University implements Serializable {
+    private String name; // 학교이름
+
+    public University() {
+    }
+
+    public University(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
