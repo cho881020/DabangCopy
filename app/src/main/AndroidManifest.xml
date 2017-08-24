@@ -18,7 +18,7 @@
             android:value="AIzaSyBW3AVMdp4koMzIlkyp4t45ACfyYUfAFNk" />
 
         <activity android:name=".SplashActivity" />
-        <activity android:name=".RoomListActivity"></activity>
+        <activity android:name=".RoomListActivity" />
         <activity android:name=".ViewRoomDetailActivity" />
         <activity android:name=".RoomFilterActivity" />
         <activity android:name=".PhotoViewPagerActivity" />
@@ -29,7 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RoomSearchActivity"></activity>
+        <activity android:name=".RoomSearchActivity" />
+        <activity android:name=".RequestMoveActivity"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import kr.co.tjeit.dabangcopy.R;
+import kr.co.tjeit.dabangcopy.RequestMoveActivity;
 import kr.co.tjeit.dabangcopy.RoomSearchActivity;
 
 /**
@@ -22,11 +23,13 @@ public class HomeFragment extends Fragment {
     private LinearLayout searchBtn2;
     private LinearLayout searchBtn3;
     private LinearLayout searchBtn4;
+    private LinearLayout moveRequestBtn;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_home, container, false);
+        this.moveRequestBtn = (LinearLayout) view.findViewById(R.id.moveRequestBtn);
         this.searchBtn4 = (LinearLayout) view.findViewById(R.id.searchBtn4);
         this.searchBtn3 = (LinearLayout) view.findViewById(R.id.searchBtn3);
         this.searchBtn2 = (LinearLayout) view.findViewById(R.id.searchBtn2);
@@ -49,6 +52,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupEvents() {
+
+        moveRequestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RequestMoveActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        검색용 버튼들은 하는일이 모두 비슷함.
 //        무조건 검색 액티비티를 띄움. => 넘겨주는 재료만 다름.
