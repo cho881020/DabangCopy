@@ -11,6 +11,7 @@
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/stationNameTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -22,20 +23,24 @@
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/lineTxt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1호선"/>
         <TextView
+            android:id="@+id/lineTxt2"
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2호선"/>
         <TextView
+            android:id="@+id/lineTxt3"
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3호선"/>
         <TextView
+            android:id="@+id/lineTxt4"
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

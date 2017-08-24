@@ -1,12 +1,22 @@
 package kr.co.tjeit.dabangcopy;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.co.tjeit.dabangcopy.adapter.SubwayAdapter;
+import kr.co.tjeit.dabangcopy.data.Subway;
+import kr.co.tjeit.dabangcopy.util.GlobalData;
 
 public class RoomSearchActivity extends BaseActivity {
 
@@ -20,6 +30,11 @@ public class RoomSearchActivity extends BaseActivity {
 
     int selectedTab = 0;
     private android.widget.EditText searchEdt;
+    private android.widget.ListView subwayListView;
+
+//    화면에 출력될 지하철 목록
+    List<Subway> mDisplaySubwayList = new ArrayList<>();
+    SubwayAdapter mSubwayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +48,26 @@ public class RoomSearchActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+//        키보드 타이핑 이벤트 감지
+
+        searchEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterSubwayList(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         searchTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
@@ -54,12 +89,42 @@ public class RoomSearchActivity extends BaseActivity {
         });
     }
 
+    private void filterSubwayList(String inputStr) {
+
+//        지하철 역 목록을 필터 하는 메쏘드
+
+//        출력될 지하철 역 목록을 전부 삭제
+        mDisplaySubwayList.clear();
+
+//        어떤 지하철 역이 추가되어야 하는가? 가공
+
+//        GlobalData가 가진 모든 지하철역에 대해 하나하나 검사
+
+        for (Subway s : GlobalData.stations) {
+//            검사하는 역의 이름이, 입력된 문자로 시작하는지?
+            if (s.getStationName().startsWith(inputStr)) {
+//                출력용 목록에 현재 검사하던 지하철역을 집어넣음.
+                mDisplaySubwayList.add(s);
+            }
+        }
+
+
+//        출력 리스트의 가공이 모두 완료되면, 지하철 역 어댑터를 새로고침.
+        mSubwayAdapter.notifyDataSetChanged();
+    }
+
     @Override
     public void setValues() {
         makeTabHost();
 
 //        탭 호스트에 선택값 주기
         searchTabHost.setCurrentTab(selectedTab);
+
+//        모든 지하철 역을 출력용 목록에 집어넣음
+        mDisplaySubwayList.addAll(GlobalData.stations);
+
+        mSubwayAdapter = new SubwayAdapter(mContext, mDisplaySubwayList);
+        subwayListView.setAdapter(mSubwayAdapter);
 
     }
 
@@ -100,6 +165,7 @@ public class RoomSearchActivity extends BaseActivity {
         this.tab4 = (LinearLayout) findViewById(R.id.tab4);
         this.tab3 = (LinearLayout) findViewById(R.id.tab3);
         this.tab2 = (LinearLayout) findViewById(R.id.tab2);
+        this.subwayListView = (ListView) findViewById(R.id.subwayListView);
         this.tab1 = (LinearLayout) findViewById(R.id.tab1);
         this.tabs = (TabWidget) findViewById(android.R.id.tabs);
         this.searchEdt = (EditText) findViewById(R.id.searchEdt);
