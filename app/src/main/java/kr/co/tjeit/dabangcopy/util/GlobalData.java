@@ -108,7 +108,7 @@ public class GlobalData {
 
 
         stations.add(new Subway("서초"));
-        stations.get(2).getLines().add("2호선");
+        stations.get(8).getLines().add("2호선");
 
 
 //        ※ 관계들을 설정
