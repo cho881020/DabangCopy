@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.tjeit.dabangcopy.adapter.SubwayAdapter;
+import kr.co.tjeit.dabangcopy.adapter.UniversityAdapter;
 import kr.co.tjeit.dabangcopy.data.Subway;
+import kr.co.tjeit.dabangcopy.data.University;
 import kr.co.tjeit.dabangcopy.util.GlobalData;
 
 public class RoomSearchActivity extends BaseActivity {
@@ -35,9 +37,12 @@ public class RoomSearchActivity extends BaseActivity {
     private android.widget.EditText searchEdt;
     private android.widget.ListView subwayListView;
 
-//    화면에 출력될 지하철 목록
+    //    화면에 출력될 지하철 목록
     List<Subway> mDisplaySubwayList = new ArrayList<>();
     SubwayAdapter mSubwayAdapter;
+    private ListView universityListView;
+    List<University> mDisplayUniversityList = new ArrayList<>();
+    UniversityAdapter mUniversityAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +84,21 @@ public class RoomSearchActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterSubwayList(s.toString());
+//                지하철 목록을 보고있을때는
+//                지하철을 필터
+                if (searchTabHost.getCurrentTab() == 1) {
+                    filterSubwayList(s.toString());
+                }
+                else if (searchTabHost.getCurrentTab() == 2) {
+
+//                대학교 목록을 보고있을때는
+//                대학교 목록을 피터
+
+                    filterUniversityList(s.toString());
+                }
+
+
+
             }
 
             @Override
@@ -91,22 +110,42 @@ public class RoomSearchActivity extends BaseActivity {
         searchTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
+
+                searchEdt.setText("");
+
                 Log.d("터치된탭", tabId);
                 if (tabId.equals("tab1")) {
                     searchEdt.setHint("동, 면, 읍 명을 검색하세요.");
-                }
-                else if (tabId.equals("tab2")) {
+                } else if (tabId.equals("tab2")) {
                     searchEdt.setHint("지하철 명을 검색하세요.");
-                }
-                else if (tabId.equals("tab3")) {
+                } else if (tabId.equals("tab3")) {
                     searchEdt.setHint("대학교 명을 검색하세요.");
-                }
-                else if (tabId.equals("tab4")) {
+                } else if (tabId.equals("tab4")) {
                     searchEdt.setHint("단지 명을 검색하세요.");
                 }
 
+
+//                searchEdt.setText("");
+
             }
         });
+    }
+
+    private void filterUniversityList(String inputStr) {
+
+        mDisplayUniversityList.clear();
+
+        for (University uv : GlobalData.universities) {
+            if (uv.getName().startsWith(inputStr)) {
+                mDisplayUniversityList.add(uv);
+            }
+        }
+
+
+        if (mUniversityAdapter != null) {
+            mUniversityAdapter.notifyDataSetChanged();
+        }
+
     }
 
     private void filterSubwayList(String inputStr) {
@@ -130,7 +169,10 @@ public class RoomSearchActivity extends BaseActivity {
 
 
 //        출력 리스트의 가공이 모두 완료되면, 지하철 역 어댑터를 새로고침.
-        mSubwayAdapter.notifyDataSetChanged();
+        if (mSubwayAdapter != null) {
+            mSubwayAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override
@@ -145,6 +187,10 @@ public class RoomSearchActivity extends BaseActivity {
 
         mSubwayAdapter = new SubwayAdapter(mContext, mDisplaySubwayList);
         subwayListView.setAdapter(mSubwayAdapter);
+
+        mDisplayUniversityList.addAll(GlobalData.universities);
+        mUniversityAdapter = new UniversityAdapter(mContext, mDisplayUniversityList);
+        universityListView.setAdapter(mUniversityAdapter);
 
     }
 
@@ -184,6 +230,7 @@ public class RoomSearchActivity extends BaseActivity {
         this.tabcontent = (FrameLayout) findViewById(android.R.id.tabcontent);
         this.tab4 = (LinearLayout) findViewById(R.id.tab4);
         this.tab3 = (LinearLayout) findViewById(R.id.tab3);
+        this.universityListView = (ListView) findViewById(R.id.universityListView);
         this.tab2 = (LinearLayout) findViewById(R.id.tab2);
         this.subwayListView = (ListView) findViewById(R.id.subwayListView);
         this.tab1 = (LinearLayout) findViewById(R.id.tab1);
