@@ -27,6 +27,34 @@
 
         <LinearLayout
             android:visibility="gone"
+            android:id="@+id/favoriteListFragmentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="kr.co.tjeit.dabangcopy.fragment.FavoriteListFragment"
+                tools:layout="@layout/frag_favorite_list" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/mapListFragmentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="kr.co.tjeit.dabangcopy.fragment.MapListFragment"
+                tools:layout="@layout/frag_map_list" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:visibility="gone"
             android:id="@+id/myProfileFragmentLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -35,6 +63,19 @@
                 android:layout_height="match_parent"
                 class="kr.co.tjeit.dabangcopy.fragment.MyProfileFragment"
                 tools:layout="@layout/frag_my_profile" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/seeMoreFragmentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="kr.co.tjeit.dabangcopy.fragment.SeeMoreFragment"
+                tools:layout="@layout/frag_see_more" />
 
         </LinearLayout>
 
@@ -48,7 +89,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/line_divider"/>
+            android:background="@color/line_divider" />
 
 
         <LinearLayout
@@ -62,7 +103,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:tag="0">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -77,11 +119,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/favoriteBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:tag="1">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -97,11 +141,13 @@
 
 
             <LinearLayout
+                android:id="@+id/mapBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:tag="2">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -122,7 +168,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:tag="3">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -137,11 +184,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/seeMoreBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:tag="4">
 
                 <ImageView
                     android:layout_width="40dp"
