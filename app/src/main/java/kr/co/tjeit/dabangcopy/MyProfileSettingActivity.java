@@ -1,7 +1,9 @@
 package kr.co.tjeit.dabangcopy;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
@@ -41,7 +43,18 @@ public class MyProfileSettingActivity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
 //                        아이템이 선택되면 할 일
 
-                        Toast.makeText(mContext, which + "번 아이템 선택", Toast.LENGTH_SHORT).show();
+                        if (which == 0 ) {
+//                            사진 찍기가 눌린 상황
+
+                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivity(takePictureIntent);
+                        }
+                        else if (which == 1) {
+//                            카메라 롤에서 선택이 눌린 상황
+
+                        }
+
+//                        Toast.makeText(mContext, which + "번 아이템 선택", Toast.LENGTH_SHORT).show();
 
                     }
                 });
