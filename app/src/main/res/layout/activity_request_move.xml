@@ -273,7 +273,7 @@
                     android:textSize="16sp" />
 
                 <TableLayout
-                    android:stretchColumns="2"
+                    android:stretchColumns="1,2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp">
@@ -304,17 +304,35 @@
                         <TextView
                             android:textColor="@color/black"
                             android:padding="5dp"
+                            android:text="원룸이사" />
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:text="9만 3천원" />
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:padding="5dp"
+                            android:text="9만 3천원" />
+                    </TableRow>
+                    <TableRow
+                        android:background="@color/white">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:padding="5dp"
                             android:text="원룸포장이사" />
 
                         <TextView
                             android:textColor="@color/black"
                             android:padding="5dp"
-                            android:text="9만 3천원" />
+                            android:text="35만원" />
 
                         <TextView
                             android:textColor="@color/black"
                             android:padding="5dp"
-                            android:text="9만 3천원" />
+                            android:text="35만원" />
                     </TableRow>
 
                     <TableRow
@@ -328,33 +346,30 @@
                         <TextView
                             android:textColor="@color/black"
                             android:padding="5dp"
-                            android:text="9만 3천원" />
+                            android:text="88만원" />
 
                         <TextView
                             android:textColor="@color/black"
                             android:padding="5dp"
-                            android:text="9만 3천원" />
+                            android:text="110만원" />
                     </TableRow>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <TableRow
+                        android:background="@color/white">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:textColor="@color/black"
                             android:padding="5dp"
                             android:text="보관이사" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_span="2"
                             android:textColor="@color/black"
                             android:padding="5dp"
-                            android:text="9만 3천원" />
+                            android:text="1일당 보관 비용 + 왕복 운반 비용 별도" />
 
-                    </LinearLayout>
+                    </TableRow>
+
 
                 </TableLayout>
 
