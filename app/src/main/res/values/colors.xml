@@ -6,7 +6,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="line_divider">#EFEFEF</color>
+    <color name="line_divider">#C0C0C0</color>
 
     <!--월세를 나타내는 색-->
     <color name="month_pay_color">#0C58ED</color>
