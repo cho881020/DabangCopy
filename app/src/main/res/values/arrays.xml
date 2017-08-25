@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="select_picture">
+        <item>사진 찍기</item>
+        <item>카메라 롤에서 선택</item>
+        <item>사진 삭제</item>
+        <item>취소</item>
+    </string-array>
+    
+</resources>

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="#A0A0A0"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="kr.co.tjeit.dabangcopy.MyProfileSettingActivity">
 
     <FrameLayout
@@ -40,7 +42,6 @@
             android:orientation="vertical">
 
             <LinearLayout
-                tools:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -97,7 +98,16 @@
 
                 </FrameLayout>
 
+                <Spinner
+                    android:id="@+id/selectSpinner"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:entries="@array/select_picture"></Spinner>
+
                 <Button
+                    android:id="@+id/changePictureBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -168,6 +178,7 @@
 
 
             <Button
+                android:id="@+id/logoutBtn"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
