@@ -1,8 +1,16 @@
 package kr.co.tjeit.dabangcopy;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import kr.co.tjeit.dabangcopy.util.GlobalData;
 
@@ -26,6 +34,21 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 //        임시로, 이곳에서 GlobalData에 더미데이터를 채워넣음.
         GlobalData.initGlobalData();
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "kr.co.tjeit.dabangcopy",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
 
         bindViews();
         setupEvents();
