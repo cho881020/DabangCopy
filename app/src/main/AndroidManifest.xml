@@ -30,7 +30,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RoomSearchActivity" />
-        <activity android:name=".RequestMoveActivity"></activity>
+        <activity android:name=".RequestMoveActivity" />
+        <activity android:name=".MyProfileSettingActivity"></activity>
     </application>
 
 </manifest>
