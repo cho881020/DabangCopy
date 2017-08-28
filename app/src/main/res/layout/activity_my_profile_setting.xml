@@ -176,13 +176,16 @@
                     android:layout_height="wrap_content">
 
                     <EditText
+                        android:id="@+id/phoneEdt"
                         android:background="@drawable/gray_boader_white_round_box"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
+                        android:inputType="phone"
                         />
 
                     <TextView
+                        android:id="@+id/phoneChangeBtn"
                         android:layout_gravity="right|center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_marginRight="10dp"

@@ -32,6 +32,8 @@ public class MyProfileSettingActivity extends BaseActivity {
     private android.widget.TextView userIdTxt;
     private android.widget.EditText userNameEdt;
     private TextView userNameChangeBtn;
+    private EditText phoneEdt;
+    private TextView phoneChangeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,14 @@ public class MyProfileSettingActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        phoneChangeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContextUtil.setUserPhone(mContext, phoneEdt.getText().toString());
+                finish();
+            }
+        });
 
         userNameChangeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,13 +80,12 @@ public class MyProfileSettingActivity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
 //                        아이템이 선택되면 할 일
 
-                        if (which == 0 ) {
+                        if (which == 0) {
 //                            사진 찍기가 눌린 상황
 
                             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             startActivityForResult(takePictureIntent, REQ_FOR_CAMERA);
-                        }
-                        else if (which == 1) {
+                        } else if (which == 1) {
 //                            카메라 롤에서 선택이 눌린 상황
 
                             Intent intent = new Intent();
@@ -121,8 +130,6 @@ public class MyProfileSettingActivity extends BaseActivity {
                         startActivity(intent);
 
 
-
-
                     }
                 });
                 alert.setNegativeButton("취소", null);
@@ -136,6 +143,7 @@ public class MyProfileSettingActivity extends BaseActivity {
     public void setValues() {
         userIdTxt.setText(ContextUtil.getUserId(mContext));
         userNameEdt.setText(ContextUtil.getUserName(mContext));
+        phoneEdt.setText(ContextUtil.getUserPhone(mContext));
     }
 
     @Override
@@ -192,6 +200,8 @@ public class MyProfileSettingActivity extends BaseActivity {
     @Override
     public void bindViews() {
         this.logoutBtn = (Button) findViewById(R.id.logoutBtn);
+        this.phoneChangeBtn = (TextView) findViewById(R.id.phoneChangeBtn);
+        this.phoneEdt = (EditText) findViewById(R.id.phoneEdt);
         this.userNameChangeBtn = (TextView) findViewById(R.id.userNameChangeBtn);
         this.userNameEdt = (EditText) findViewById(R.id.userNameEdt);
         this.changePictureBtn = (Button) findViewById(R.id.changePictureBtn);

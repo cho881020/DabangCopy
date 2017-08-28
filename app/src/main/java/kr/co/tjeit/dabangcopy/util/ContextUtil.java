@@ -28,8 +28,19 @@ public class ContextUtil {
     private static final String USER_ID = "USER_ID";
 //    사용자의 이름을 저장할때 쓰는 Tag
     private static final String USER_NAME = "USER_NAME";
+    private static final String USER_PHONE = "USER_PHONE";
 
 //    Getter / Setter 항상 public
+
+    public  static void  setUserPhone(Context context, String phone) {
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+        pref.edit().putString(USER_PHONE, phone).commit();
+    }
+
+    public static String getUserPhone(Context context) {
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+        return pref.getString(USER_PHONE, "");
+    }
 
     public static void setUserName(Context context, String userName) {
         SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);

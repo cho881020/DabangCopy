@@ -24,11 +24,13 @@ public class MyProfileFragment extends Fragment {
     private android.widget.TextView dialCustomerCenter;
     private android.widget.LinearLayout myProfileBtn;
     private TextView userNameTxt;
+    private TextView userPhoneTxt;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_my_profile, container, false);
+        this.userPhoneTxt = (TextView) v.findViewById(R.id.userPhoneTxt);
         this.userNameTxt = (TextView) v.findViewById(R.id.userNameTxt);
         this.myProfileBtn = (LinearLayout) v.findViewById(R.id.myProfileBtn);
         this.dialCustomerCenter = (TextView) v.findViewById(R.id.dialCustomerCenter);
@@ -46,11 +48,13 @@ public class MyProfileFragment extends Fragment {
     public void onResume() {
         super.onResume();
         userNameTxt.setText(ContextUtil.getUserName(getActivity()));
+        userPhoneTxt.setText(ContextUtil.getUserPhone(getActivity()));
 
     }
 
     private void setValues() {
         userNameTxt.setText(ContextUtil.getUserName(getActivity()));
+        userPhoneTxt.setText(ContextUtil.getUserPhone(getActivity()));
     }
 
     private void setupEvents() {
