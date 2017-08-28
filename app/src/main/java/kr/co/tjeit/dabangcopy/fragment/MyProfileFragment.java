@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import kr.co.tjeit.dabangcopy.MyProfileSettingActivity;
 import kr.co.tjeit.dabangcopy.R;
 import kr.co.tjeit.dabangcopy.util.ContextUtil;
@@ -25,11 +28,13 @@ public class MyProfileFragment extends Fragment {
     private android.widget.LinearLayout myProfileBtn;
     private TextView userNameTxt;
     private TextView userPhoneTxt;
+    private de.hdodenhof.circleimageview.CircleImageView profileImg;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_my_profile, container, false);
+        this.profileImg = (CircleImageView) v.findViewById(R.id.profileImg);
         this.userPhoneTxt = (TextView) v.findViewById(R.id.userPhoneTxt);
         this.userNameTxt = (TextView) v.findViewById(R.id.userNameTxt);
         this.myProfileBtn = (LinearLayout) v.findViewById(R.id.myProfileBtn);
@@ -54,6 +59,8 @@ public class MyProfileFragment extends Fragment {
 
     private void setValues() {
 
+        Glide.with(getActivity()).load(ContextUtil.getLoginUser(getActivity())
+                .getProfileImageURL()).into(profileImg);
 
         userNameTxt.setText(ContextUtil.getLoginUser(getActivity()).getName());
         userPhoneTxt.setText(ContextUtil.getLoginUser(getActivity()).getPhoneNum());

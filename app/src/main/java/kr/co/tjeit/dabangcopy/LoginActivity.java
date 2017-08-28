@@ -3,15 +3,19 @@ package kr.co.tjeit.dabangcopy;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -26,6 +30,7 @@ public class LoginActivity extends BaseActivity {
     private android.widget.CheckBox autoLoginChk;
 
     CallbackManager callbackManager;
+    ProfileTracker profileTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,37 @@ public class LoginActivity extends BaseActivity {
 
             }
         });
+
+        profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+                Log.d("페이스북로그인", "로그인 감지");
+
+                if (currentProfile == null) {
+//                    로그아웃 된 경우
+                    Toast.makeText(mContext, "페이스북 로그아웃 성공", Toast.LENGTH_SHORT).show();
+                }
+                else {
+//                    로그인이 된 경우
+                    Toast.makeText(mContext, "로그인한 사람 : " + currentProfile.getName(), Toast.LENGTH_SHORT).show();
+
+
+//                    ContextUtil을 이용해 로그인 정보를 심어준다.
+                    String profileURL = "https://graph.facebook.com"
+                            + currentProfile.getProfilePictureUri(500,500).getPath();
+                    ContextUtil.setLoginUser(mContext, currentProfile.getName(), "받아올수없음",
+                            currentProfile.getId(), profileURL);
+
+//                    로그인에 성공했으니, 메인 화면으로 넘어가게.
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+
+                }
+
+            }
+        };
 
     }
 
