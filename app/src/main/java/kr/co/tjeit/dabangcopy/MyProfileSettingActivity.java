@@ -93,7 +93,21 @@ public class MyProfileSettingActivity extends BaseActivity {
 
 //                        로그아웃? => 로그인한 사용자 정보를 파기.
                         ContextUtil.logoutProcess();
+
+//                        ※ 프로필 세팅화면이 종료되고, 메인액티비티로 돌아가게됨.
+
+//                        실제로 원하는건, 메인액티비티도 같이 종료되고
+//                        로그인 액티비티가 실행되도록.
+//                        finish의 의미? => ~~Activity를 종료해라. 자기자신을 종료해라.
+//                        MainActivity를 종료하려면, MainActivitzy의 finish를 호출.
+                        MainActivity.activity.finish();
+
                         finish();
+
+                        Intent intent = new Intent(mContext, LoginActivity.class);
+                        startActivity(intent);
+
+
 
 
                     }

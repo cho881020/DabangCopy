@@ -1,10 +1,11 @@
 package kr.co.tjeit.dabangcopy;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.facebook.login.widget.LoginButton;
@@ -17,6 +18,7 @@ public class LoginActivity extends BaseActivity {
     private android.widget.Button loginBtn;
     private com.facebook.login.widget.LoginButton loginbutton;
     private android.widget.Button facebookLoginBtn;
+    private android.widget.CheckBox autoLoginChk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,24 @@ public class LoginActivity extends BaseActivity {
 
 //        2. 프로필 설정화면에서 나타나는 이메일을, 이곳에서 입력하는 ID가 표시되도록.
 
+
+//        자동로그인을 체크/해제 하면 바로바로 기록하도록.
+
+        autoLoginChk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ContextUtil.setAutoLogin(mContext, isChecked);
+            }
+        });
+
+
     }
 
     @Override
     public void setValues() {
+
+        boolean autoLogin = ContextUtil.getAutoLogin(mContext);
+        autoLoginChk.setChecked(autoLogin);
 
     }
 
@@ -62,6 +78,7 @@ public class LoginActivity extends BaseActivity {
         this.facebookLoginBtn = (Button) findViewById(R.id.facebookLoginBtn);
         this.loginbutton = (LoginButton) findViewById(R.id.login_button);
         this.loginBtn = (Button) findViewById(R.id.loginBtn);
+        this.autoLoginChk = (CheckBox) findViewById(R.id.autoLoginChk);
         this.idEdt = (EditText) findViewById(R.id.idEdt);
 
     }

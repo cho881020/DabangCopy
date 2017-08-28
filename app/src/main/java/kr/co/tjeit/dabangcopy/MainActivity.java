@@ -16,6 +16,8 @@ import kr.co.tjeit.dabangcopy.util.GlobalData;
 
 public class MainActivity extends BaseActivity {
 
+//    화면에 나타나있는 메인액티비티를 저장하는 변수.
+    public static MainActivity activity;
 
     private android.widget.LinearLayout homeFragmentLayout;
     private android.widget.LinearLayout myProfileFragmentLayout;
@@ -32,6 +34,10 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        MainActivity에게 접근할수 있는 변수를 초기화.
+        activity = this;
+
 //        임시로, 이곳에서 GlobalData에 더미데이터를 채워넣음.
         GlobalData.initGlobalData();
 
