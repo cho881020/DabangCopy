@@ -10,11 +10,13 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import kr.co.tjeit.dabangcopy.util.ContextUtil;
 
 public class MyProfileSettingActivity extends BaseActivity {
 
@@ -26,6 +28,7 @@ public class MyProfileSettingActivity extends BaseActivity {
     private Button changePictureBtn;
     private android.widget.Spinner selectSpinner;
     private de.hdodenhof.circleimageview.CircleImageView profileImg;
+    private android.widget.TextView userIdTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,11 @@ public class MyProfileSettingActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+//                        로그아웃? => 로그인한 사용자 정보를 파기.
+                        ContextUtil.logoutProcess();
+                        finish();
+
+
                     }
                 });
                 alert.setNegativeButton("취소", null);
@@ -99,7 +107,7 @@ public class MyProfileSettingActivity extends BaseActivity {
 
     @Override
     public void setValues() {
-
+        userIdTxt.setText(ContextUtil.loginUser.getLoginId());
     }
 
     @Override
@@ -158,6 +166,7 @@ public class MyProfileSettingActivity extends BaseActivity {
         this.logoutBtn = (Button) findViewById(R.id.logoutBtn);
         this.changePictureBtn = (Button) findViewById(R.id.changePictureBtn);
         this.selectSpinner = (Spinner) findViewById(R.id.selectSpinner);
+        this.userIdTxt = (TextView) findViewById(R.id.userIdTxt);
         this.profileImg = (CircleImageView) findViewById(R.id.profileImg);
     }
 }
