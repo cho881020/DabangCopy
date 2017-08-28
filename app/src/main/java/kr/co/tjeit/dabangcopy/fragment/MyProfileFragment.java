@@ -53,8 +53,10 @@ public class MyProfileFragment extends Fragment {
     }
 
     private void setValues() {
-        userNameTxt.setText(ContextUtil.getUserName(getActivity()));
-        userPhoneTxt.setText(ContextUtil.getUserPhone(getActivity()));
+
+
+        userNameTxt.setText(ContextUtil.getLoginUser(getActivity()).getName());
+        userPhoneTxt.setText(ContextUtil.getLoginUser(getActivity()).getPhoneNum());
     }
 
     private void setupEvents() {

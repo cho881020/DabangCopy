@@ -40,7 +40,9 @@ public class LoginActivity extends BaseActivity {
                 Intent intent = new Intent(mContext, MainActivity.class);
 
 //                1. ContextUtil을 통해 SharedPrefrences에 사용자아이디를 저장.
-                ContextUtil.setUserId(mContext, idEdt.getText().toString());
+
+                ContextUtil.setLoginUser(mContext, "A사용자", "011-222-333", idEdt.getText().toString(), "tempURL");
+
 //                2. MainActivity의 My 탭에서 입력한 아이디를 출력
 //                  => SharedPreference를 통해
 //                3. 프로필 설정 화면에서도 입력한 아이디를 SharedPreference를 통해 출력

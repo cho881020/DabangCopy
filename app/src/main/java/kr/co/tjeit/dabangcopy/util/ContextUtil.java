@@ -26,10 +26,14 @@ public class ContextUtil {
 
 //    자동로그인 여부를 저장할때 사용하는 Tag
     private static final String AUTO_LOGIN = "AUTO_LOGIN";
+//    몇번째 사용자인지 기록.
+    private static final String USER_COUNT = "USER_COUNT";
 //    로그인한 아이디를 저장할때 사용하는 Tag
     private static final String USER_ID = "USER_ID";
 //    사용자의 이름을 저장할때 쓰는 Tag
     private static final String USER_NAME = "USER_NAME";
+    private static final String USER_PROVIDER = "USER_PROVIDER";
+    private static final String USER_PROFILE_URL = "USER_PROFILE_URL";
     private static final String USER_PHONE = "USER_PHONE";
 
 //    Getter / Setter 항상 public
@@ -109,7 +113,8 @@ public class ContextUtil {
         return autoLogin;
     }
 
-    public static void setLoginUser(Context context, String name, String phoneNum, String id) {
+    public static void setLoginUser(Context context, String name,
+                                    String phoneNum, String id, String profileURL) {
 
         SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
@@ -117,6 +122,7 @@ public class ContextUtil {
 //        pref.edit().putString(USER_NICKNAME, nickName).commit();
         pref.edit().putString(USER_PHONE, phoneNum).commit();
         pref.edit().putString(USER_ID, id).commit();
+        pref.edit().putString(USER_PROFILE_URL, profileURL).commit();
 
         loginUser = new User();
 
@@ -129,6 +135,7 @@ public class ContextUtil {
             loginUser.setName(pref.getString(USER_NAME, ""));
             loginUser.setPhoneNum(pref.getString(USER_PHONE, ""));
             loginUser.setLoginId(pref.getString(USER_ID, ""));
+            loginUser.setProfileImageURL(pref.getString(USER_PROFILE_URL, ""));
         }
 
         return loginUser;
