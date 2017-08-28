@@ -3,6 +3,8 @@ package kr.co.tjeit.dabangcopy.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.w3c.dom.UserDataHandler;
+
 import kr.co.tjeit.dabangcopy.data.User;
 
 /**
@@ -31,8 +33,20 @@ public class ContextUtil {
     private static final String USER_PHONE = "USER_PHONE";
 
 //    Getter / Setter 항상 public
+//
+//    public static void setUserNickname(Context context, String nickName) {
+//        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+//        pref.edit().putString(USER_NICKNAME, nickName).commit();
+//    }
+//
+//    public static String getUserNickname(Context context) {
+//        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+//        return pref.getString(USER_NICKNAME, "닉네임이 지정되지 않았습니다.");
+//    }
+
 
     public  static void  setUserPhone(Context context, String phone) {
+
         SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
         pref.edit().putString(USER_PHONE, phone).commit();
     }
@@ -95,15 +109,33 @@ public class ContextUtil {
         return autoLogin;
     }
 
+    public static void setLoginUser(Context context, String name, String phoneNum, String id) {
 
-    public static void setLoginUserInfo(String loginIdStr) {
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
 
-//        로그인 한 사용자 정보를 새로 생성
+        pref.edit().putString(USER_NAME, name).commit();
+//        pref.edit().putString(USER_NICKNAME, nickName).commit();
+        pref.edit().putString(USER_PHONE, phoneNum).commit();
+        pref.edit().putString(USER_ID, id).commit();
+
         loginUser = new User();
-//        생성된 사용자의 ID를 저장.
-        loginUser.setLoginId(loginIdStr);
 
     }
+
+    public static User getLoginUser(Context context) {
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+
+        if (loginUser != null) {
+            loginUser.setName(pref.getString(USER_NAME, ""));
+            loginUser.setPhoneNum(pref.getString(USER_PHONE, ""));
+            loginUser.setLoginId(pref.getString(USER_ID, ""));
+        }
+
+        return loginUser;
+
+    }
+
+
 
     public static void logoutProcess() {
 //        로그인한 사용자 정보를 파기.
