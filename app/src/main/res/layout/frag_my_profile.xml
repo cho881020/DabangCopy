@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -62,9 +62,18 @@
                         app:civ_border_width="2dp" />
 
                     <TextView
+                        android:id="@+id/userNameTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:text="조경진"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/userPhoneTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="019-567-3237"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 

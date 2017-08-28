@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,8 @@ public class MyProfileSettingActivity extends BaseActivity {
     private android.widget.Spinner selectSpinner;
     private de.hdodenhof.circleimageview.CircleImageView profileImg;
     private android.widget.TextView userIdTxt;
+    private android.widget.EditText userNameEdt;
+    private TextView userNameChangeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,16 @@ public class MyProfileSettingActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        userNameChangeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                1. ContextUtil 통해 사용자 이름을 저장
+                ContextUtil.setUserName(mContext, userNameEdt.getText().toString());
+//                2. 화면을 종료
+                finish();
+            }
+        });
 
         changePictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +134,8 @@ public class MyProfileSettingActivity extends BaseActivity {
 
     @Override
     public void setValues() {
-        userIdTxt.setText(ContextUtil.loginUser.getLoginId());
+        userIdTxt.setText(ContextUtil.getUserId(mContext));
+        userNameEdt.setText(ContextUtil.getUserName(mContext));
     }
 
     @Override
@@ -178,6 +192,8 @@ public class MyProfileSettingActivity extends BaseActivity {
     @Override
     public void bindViews() {
         this.logoutBtn = (Button) findViewById(R.id.logoutBtn);
+        this.userNameChangeBtn = (TextView) findViewById(R.id.userNameChangeBtn);
+        this.userNameEdt = (EditText) findViewById(R.id.userNameEdt);
         this.changePictureBtn = (Button) findViewById(R.id.changePictureBtn);
         this.selectSpinner = (Spinner) findViewById(R.id.selectSpinner);
         this.userIdTxt = (TextView) findViewById(R.id.userIdTxt);

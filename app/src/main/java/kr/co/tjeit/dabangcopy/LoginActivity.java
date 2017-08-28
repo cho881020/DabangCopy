@@ -1,5 +1,6 @@
 package kr.co.tjeit.dabangcopy;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,10 +39,19 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, MainActivity.class);
 
+//                1. ContextUtil을 통해 SharedPrefrences에 사용자아이디를 저장.
+                ContextUtil.setUserId(mContext, idEdt.getText().toString());
+//                2. MainActivity의 My 탭에서 입력한 아이디를 출력
+//                  => SharedPreference를 통해
+//                3. 프로필 설정 화면에서도 입력한 아이디를 SharedPreference를 통해 출력
+//                4. 앱을 껐다가 키면 아이디 입력칸에도 아까 입력한 아이디를 출력
+
+
+
 //                ContextUtil.loginUser => 내용을 채워주자.
 //                여기서 바로 작업하지 말고, ContextUtil에서 세팅.
 
-                ContextUtil.setLoginUserInfo(idEdt.getText().toString());
+//                ContextUtil.setLoginUserInfo(idEdt.getText().toString());
 
                 startActivity(intent);
                 finish();
@@ -69,6 +79,8 @@ public class LoginActivity extends BaseActivity {
 
         boolean autoLogin = ContextUtil.getAutoLogin(mContext);
         autoLoginChk.setChecked(autoLogin);
+
+        idEdt.setText(ContextUtil.getUserId(mContext));
 
     }
 

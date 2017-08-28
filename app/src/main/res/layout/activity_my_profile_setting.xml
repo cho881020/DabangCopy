@@ -49,6 +49,7 @@
                 android:paddingBottom="20dp">
 
                 <FrameLayout
+                    tools:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -134,14 +135,33 @@
                     android:text="이름"
                     android:textColor="@color/black" />
 
-                <EditText
+                <FrameLayout
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/gray_boader_white_round_box"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:hint="조경진"
-                    />
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/userNameEdt"
+                        android:background="@drawable/gray_boader_white_round_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:hint="조경진"
+                        />
+                    <TextView
+                        android:id="@+id/userNameChangeBtn"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:text="변경"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/gray_boader_gray_round_box"/>
+
+
+                </FrameLayout>
                 <TextView
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"

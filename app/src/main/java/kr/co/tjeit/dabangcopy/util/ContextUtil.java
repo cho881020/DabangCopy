@@ -24,8 +24,34 @@ public class ContextUtil {
 
 //    자동로그인 여부를 저장할때 사용하는 Tag
     private static final String AUTO_LOGIN = "AUTO_LOGIN";
+//    로그인한 아이디를 저장할때 사용하는 Tag
+    private static final String USER_ID = "USER_ID";
+//    사용자의 이름을 저장할때 쓰는 Tag
+    private static final String USER_NAME = "USER_NAME";
 
 //    Getter / Setter 항상 public
+
+    public static void setUserName(Context context, String userName) {
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+        pref.edit().putString(USER_NAME, userName).commit();
+    }
+
+    public static String getUserName(Context context) {
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+        return pref.getString(USER_NAME, "");
+
+    }
+
+    public static void setUserId(Context context, String userId) {
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+        pref.edit().putString(USER_ID, userId).commit();
+    }
+
+    public static String getUserId(Context context) {
+        SharedPreferences pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+        String userId = pref.getString(USER_ID, "");
+        return userId;
+    }
 
     public static void setAutoLogin(Context context, boolean isAutoLogin) {
 //        1. 메모장 파일을 열어야함.
