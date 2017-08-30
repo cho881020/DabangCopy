@@ -2,7 +2,11 @@ package kr.co.tjeit.dabangcopy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +22,24 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.kakao.auth.ISessionCallback;
+import com.kakao.auth.Session;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeResponseCallback;
+import com.kakao.usermgmt.response.model.UserProfile;
+import com.kakao.util.exception.KakaoException;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import kr.co.tjeit.dabangcopy.util.ContextUtil;
 
 public class LoginActivity extends BaseActivity {
+
+//   카카오톡 로그인 처리 완료후에 메인액티비티로 이동.
+    KakaoSessionCallback ksc;
+
 
     private android.widget.EditText idEdt;
     private android.widget.Button loginBtn;
@@ -39,6 +57,21 @@ public class LoginActivity extends BaseActivity {
         bindViews();
         setupEvents();
         setValues();
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "kr.co.tjeit.dabangcopy",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
 
         callbackManager = CallbackManager.Factory.create();
         loginbutton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -93,6 +126,11 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
+            return;
+        }
+
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
@@ -143,8 +181,13 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+
+
     @Override
     public void setValues() {
+
+        ksc = new KakaoSessionCallback();
+        Session.getCurrentSession().addCallback(ksc);
 
         boolean autoLogin = ContextUtil.getAutoLogin(mContext);
         autoLoginChk.setChecked(autoLogin);
@@ -162,5 +205,45 @@ public class LoginActivity extends BaseActivity {
         this.autoLoginChk = (CheckBox) findViewById(R.id.autoLoginChk);
         this.idEdt = (EditText) findViewById(R.id.idEdt);
 
+    }
+
+    private class KakaoSessionCallback implements ISessionCallback {
+
+        @Override
+        public void onSessionOpened() {
+
+            UserManagement.requestMe(new MeResponseCallback() {
+                @Override
+                public void onSessionClosed(ErrorResult errorResult) {
+
+                }
+
+                @Override
+                public void onNotSignedUp() {
+
+                }
+
+                @Override
+                public void onSuccess(UserProfile result) {
+
+                    ContextUtil.setLoginUser(mContext,
+                            result.getNickname(),
+                            "모름",
+                            result.getId()+"",
+                            result.getProfileImagePath());
+
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+            });
+
+        }
+
+        @Override
+        public void onSessionOpenFailed(KakaoException exception) {
+
+        }
     }
 }

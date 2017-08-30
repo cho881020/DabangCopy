@@ -41,20 +41,7 @@ public class MainActivity extends BaseActivity {
 //        임시로, 이곳에서 GlobalData에 더미데이터를 채워넣음.
         GlobalData.initGlobalData();
 
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "kr.co.tjeit.dabangcopy",
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
 
-        } catch (NoSuchAlgorithmException e) {
-
-        }
 
         bindViews();
         setupEvents();
